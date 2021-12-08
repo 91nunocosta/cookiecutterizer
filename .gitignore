@@ -1,0 +1,7 @@
+*.pyc
+.coverage
+dist/
+.tox
+coverage.xml
+docs/build
+docs/source/generated

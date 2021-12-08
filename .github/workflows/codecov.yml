@@ -1,0 +1,32 @@
+---
+name: Code coverage
+on:  # yamllint disable-line rule:truthy
+  push:
+    branches:
+      - master
+
+jobs:
+  coverage:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+
+      - name: Install poetry
+        run: pip install poetry pytest pytest-cov
+
+      - name: Install package from source
+        run: poetry install
+
+      - name: Run pytest
+        run: pytest --cov=prototype_python_library --cov-report=xml tests/
+
+      - name: Run codacy-coverage-reporter
+        uses: codacy/codacy-coverage-reporter-action@v1
+        with:
+          project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
+          coverage-reports: coverage.xml
