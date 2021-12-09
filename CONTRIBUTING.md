@@ -47,7 +47,7 @@ Make sure your PR passes the _quality assurance_ checks:
 
 1. [pre-commit.ci](https://results.pre-commit.ci/repo/github/426730867)
 
-2. [tests](https://github.com/91nunocosta/prototype-python-library/actions/workflows/test.yml)
+2. [tests](https://github.com/91nunocosta/cookiecutterizer/actions/workflows/test.yml)
 
 You can run these checks locally.
 

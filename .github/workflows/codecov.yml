@@ -23,7 +23,7 @@ jobs:
         run: poetry install
 
       - name: Run pytest
-        run: pytest --cov=prototype_python_library --cov-report=xml tests/
+        run: pytest --cov=cookiecutterizer --cov-report=xml tests/
 
       - name: Run codacy-coverage-reporter
         uses: codacy/codacy-coverage-reporter-action@v1

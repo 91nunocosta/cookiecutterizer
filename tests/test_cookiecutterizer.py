@@ -1,8 +1,8 @@
-"""Test prototype_python_library module."""
+"""Test cookiecutterizer module."""
 import textwrap
 from pathlib import Path
 
-from prototype_python_library import create_file, target_files
+from cookiecutterizer import create_file, target_files
 from tests.helpers import create_binary_file, create_text_file, load_text_file
 
 

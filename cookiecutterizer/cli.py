@@ -4,7 +4,7 @@ from pathlib import Path
 
 import click
 
-from prototype_python_library import create_project
+from cookiecutterizer import create_project
 
 
 @click.command()
@@ -12,8 +12,8 @@ from prototype_python_library import create_project
 @click.option("--destination", type=click.Path(), required=True)
 @click.argument("project", type=click.Path())
 #  pylint: disable=unused-argument
-def coockiecutterize(project, substitutions, destination):
-    """Run the coockiecutterize.
+def cookiecutterize(project, substitutions, destination):
+    """Run the cookiecutterize.
 
     Args:
         project (click.Path): source project.

@@ -35,5 +35,5 @@ html_theme_options = {
     # logo.png should be under docs/source/_static
     # 'logo': 'logo.png',
     "github_user": "91nunocosta",
-    "github_repo": "prototype-python-library",
+    "github_repo": "cookiecutterizer",
 }

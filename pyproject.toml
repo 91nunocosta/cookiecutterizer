@@ -1,11 +1,11 @@
 [tool.poetry]
-name = "prototype-python-library"
+name = "cookiecutterizer"
 version = "0.1.0"
 license = "MIT"
 description = "A prototype python library."
 authors = ["Nuno Costa <91nunocosta@gmail.com>"]
 readme = "README.rst"
-repository = "https://github.com/91nunocosta/prototype-python-library/"
+repository = "https://github.com/91nunocosta/cookiecutterizer/"
 documentation = "https://prototype-python-package.readthedocs.io/en/latest/"
 
 [tool.poetry.dependencies]
@@ -19,7 +19,7 @@ tox = "^3.24.4"
 pytest-cov = "^3.0.0"
 
 [tool.poetry.scripts]
-coockiecutterize = 'prototype_python_library.cli:coockiecutterize'
+cookiecutterize = 'cookiecutterizer.cli:cookiecutterize'
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
@@ -27,7 +27,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.semantic_release]
 version_variable = [
-    "prototype_python_library/__init__.py:__version__",
+    "cookiecutterizer/__init__.py:__version__",
     "pyproject.toml:version"
 ]
 branch = "master"

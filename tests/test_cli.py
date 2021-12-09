@@ -5,12 +5,12 @@ from pathlib import Path
 
 from click.testing import CliRunner
 
-from prototype_python_library.cli import coockiecutterize
+from cookiecutterizer.cli import cookiecutterize
 from tests.helpers import create_text_file, load_text_file
 
 
 def test_cookiecutterize(tmp_path):
-    """Test coockiecutterize command."""
+    """Test cookiecutterize command."""
     runner = CliRunner()
 
     with runner.isolated_filesystem(temp_dir=tmp_path) as test_directory_path:
@@ -27,7 +27,7 @@ def test_cookiecutterize(tmp_path):
             "substitutions.json",
             json.dumps(
                 {
-                    "prototype_python_library": "coockiecutterizer",
+                    "cookiecutterizer": "cookiecutterizer",
                 }
             ),
         )
@@ -37,12 +37,12 @@ def test_cookiecutterize(tmp_path):
             "pyproject.toml",
             """
             [tool.poetry]
-            name = "prototype_python_library"
+            name = "cookiecutterizer"
             """,
         )
 
         create_text_file(
-            project / "prototype_python_library",
+            project / "cookiecutterizer",
             "__init__.py",
             """
             __version__ = 0.1.0
@@ -51,9 +51,9 @@ def test_cookiecutterize(tmp_path):
 
         create_text_file(
             project / "tests",
-            "test_prototype_python_library.py",
+            "test_cookiecutterizer.py",
             """
-            from prototype_python_library import __version__
+            from cookiecutterizer import __version__
 
             def test_version():
                 assert __version__ == "0.1.0"
@@ -61,7 +61,7 @@ def test_cookiecutterize(tmp_path):
         )
 
         result = runner.invoke(
-            coockiecutterize,
+            cookiecutterize,
             [
                 "--substitutions",
                 str(substitutions),
@@ -81,12 +81,12 @@ def test_cookiecutterize(tmp_path):
     assert load_text_file(target_project, "pyproject.toml") == textwrap.dedent(
         """
             [tool.poetry]
-            name = "coockiecutterizer"
+            name = "cookiecutterizer"
             """
     )
 
     assert load_text_file(
-        target_project / "coockiecutterizer", "__init__.py"
+        target_project / "cookiecutterizer", "__init__.py"
     ) == textwrap.dedent(
         """
             __version__ = 0.1.0
@@ -94,10 +94,10 @@ def test_cookiecutterize(tmp_path):
     )
 
     assert load_text_file(
-        target_project / "tests", "test_coockiecutterizer.py"
+        target_project / "tests", "test_cookiecutterizer.py"
     ) == textwrap.dedent(
         """
-            from coockiecutterizer import __version__
+            from cookiecutterizer import __version__
 
             def test_version():
                 assert __version__ == "0.1.0"
