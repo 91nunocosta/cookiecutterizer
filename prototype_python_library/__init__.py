@@ -97,11 +97,14 @@ def create_file(seed_file: Path, substitutions: Dict[str, str], target_file: Pat
         substitutions: substitutions to apply to the seed project.
         target_file: target file to create.
     """
-    with seed_file.open("r") as seed_file_stream:
-        with target_file.open("w") as target_file_stream:
+    try:
+        with seed_file.open("r") as seed_file_stream:
             target = seed_file_stream.read()
+    except UnicodeDecodeError:
+        return
 
-            for old, new in substitutions.items():
-                target = target.replace(old, new)
+    for old, new in substitutions.items():
+        target = target.replace(old, new)
 
-            target_file_stream.write(target)
+    with target_file.open("w") as target_file_stream:
+        target_file_stream.write(target)

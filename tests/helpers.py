@@ -1,3 +1,4 @@
+import shutil
 import textwrap
 from pathlib import Path
 from typing import Optional
@@ -11,6 +12,17 @@ def create_text_file(directory: Path, file_name: str, content: str) -> Path:
 
     with path.open("w") as text_file:
         text_file.write(textwrap.dedent(content))
+
+    return path
+
+
+def create_binary_file(directory: Path, file_name: str) -> Path:
+    if not directory.exists():
+        directory.mkdir(parents=True)
+
+    path = directory / file_name
+
+    shutil.copy(Path(__file__).parent / "data" / "bin", path)
 
     return path
 

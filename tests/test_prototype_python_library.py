@@ -3,7 +3,7 @@ import textwrap
 from pathlib import Path
 
 from prototype_python_library import create_file, target_files
-from tests.helpers import create_text_file, load_text_file
+from tests.helpers import create_binary_file, create_text_file, load_text_file
 
 
 def create_emtpy_file(path: Path):
@@ -127,3 +127,15 @@ def test_create_file_with_substiutions(tmp_path):
         eniln
         """
     )
+
+
+def test_create_binary_file(tmp_path):
+    """Test creating file from binary file seed."""
+    seed_file = create_binary_file(
+        tmp_path,
+        "seed",
+    )
+
+    create_file(seed_file, {"line": "enil"}, tmp_path / "target")
+
+    assert not (tmp_path / "target").exists()
