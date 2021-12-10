@@ -1,23 +1,24 @@
 ---
 source:
-  root: /home/nuno/Workspace/91nunocosta/project/
+  root: /home/nuno/Workspace/91nunocosta
   match:
-    - exclude: .git
-    - exclude: .tox
+    - include: project/
+    - exclude: project/.git
+    - exclude: project/.tox
 destination: /home/nuno/Workspace/91nunocosta/project-coockicutter/
-remove_source: false
+overwrite: true
 ignore_binary: true
 steps:
 
-  - substitute:
-      pattern: /project/project/
-      replacement: >
-        /{{coockicutter.workspace_directory}}/{{coockicutter.module_name}}/
-      on_paths: true
+  - rename_file:
+      parent: /project/
+      source_name: project
+      target_name: "{{coockicutter.package_name}}"
 
-  - substitute:
-      pattern: /project/
-      replacement: "/{{coockicutter.package_name}}/"
+  - rename_file:
+      parent: /
+      source_name: project
+      target_name: "{{coockicutter.workspace_directory}}"
 
   - substitute:
       match:
