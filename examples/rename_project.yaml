@@ -1,0 +1,35 @@
+---
+source:
+  root: /home/nuno/Workspace/91nunocosta/cookiecutterizer
+  files:
+    - exclude: .git
+destination: /home/nuno/Workspace/91nunocosta
+ignore_binary: true
+remove_source: true
+steps:
+  - substitute:
+      pattern: /cookiecutterizer/cookiecutterizer/
+      replacement: /kinfe-cutter/cutter/
+      on_path: true
+
+  - substitute:
+      files:
+        - exclude: "**.py"
+      pattern: cookiecutterizer
+      replacement: kinfe-cutter
+
+  - substitute:
+      files:
+        - include: "**.py"
+      pattern: cookiecutterizer
+      replacement: cutter
+
+  - substitute:
+      files:
+        - include: README.*
+      pattern: |
+        ```(.*)
+        cookiecutterizer (.*)
+      replacement: |
+        ```\1
+        cutter \1

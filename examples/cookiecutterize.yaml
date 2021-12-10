@@ -1,0 +1,60 @@
+---
+source:
+  root: /home/nuno/Workspace/91nunocosta/project/
+  match:
+    - exclude: .git
+    - exclude: .tox
+destination: /home/nuno/Workspace/91nunocosta/project-coockicutter/
+remove_source: false
+ignore_binary: true
+steps:
+
+  - substitute:
+      pattern: /project/project/
+      replacement: >
+        /{{coockicutter.workspace_directory}}/{{coockicutter.module_name}}/
+      on_paths: true
+
+  - substitute:
+      pattern: /project/
+      replacement: "/{{coockicutter.package_name}}/"
+
+  - substitute:
+      match:
+        - include: "**.py"
+      pattern: project
+      replacement: "{{coockicutter.module_name}}"
+
+  - substitute:
+      pattern: name = "project"
+      replacement: name = "{{coockicutter.package_name}}"
+
+  - substitute:
+      pattern: |
+        An prototype roject.
+        Used as seed for coockicutter.
+      replacement: "{{coockicutter.description}}"
+
+  - substitute:
+      pattern: Project
+      replacement: "{{coockicutter.project}}"
+
+  - substitute:
+      pattern: Nuno Costa
+      replacement: "{{coockicutter.author_name}}"
+
+  - substitute:
+      pattern: 91nunocosta@gmail.com
+      replacement: "{{coockicutter.author_email}}"
+
+  - substitute:
+      pattern: git@github.com:91nunocosta/python-package.git
+      replacement: "{{coockicutter.git_remote}}"
+
+  - substitute:
+      pattern: 0.1.0
+      replacement: "{{coockicutter.package_version}}"
+
+  - substitute:
+      pattern: 0.1.0
+      replacement: "{{coockicutter.package_version}}"
